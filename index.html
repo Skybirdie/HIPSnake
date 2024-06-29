@@ -1,67 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Snake</title>
     <link rel="stylesheet" href="snake.css">
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        #game-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        #board-container {
-            position: relative;
-            margin-top: 20px; /* Adjust as needed */
-        }
-
-        #start-button {
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #game-over-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: bold;
-            color: red;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            display: none;
-        }
-
-        canvas {
-            border: 1px solid black;
-        }
-    </style>
+    <script src="snake.js"></script>
 </head>
 <body>
-    <div id="game-container">
-        <h1>Snake Game</h1>
-        <div id="board-container">
-            <canvas id="board"></canvas>
-            <div id="game-over-text">Game Over</div>
-        </div>
-        <button id="start-button">Start Game</button>
+    <div class="container">
+        <h1>Snake</h1>
+        <canvas id="board"></canvas>
+        <div id="gameOverText" class="overlay">Game Over</div>
     </div>
-
-    <script src="snake.js"></script>
+    <button id="startButton">Start Game</button>
 </body>
 </html>

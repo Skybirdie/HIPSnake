@@ -26,26 +26,24 @@ window.onload = function () {
     board.width = cols * blockSize;
     context = board.getContext("2d");
 
-    document.getElementById("start-button").addEventListener("click", startGame);
+    document.getElementById("startButton").addEventListener("click", startGame);
     document.addEventListener("keyup", changeDirection);
-    board.addEventListener("click", handleCanvasClick);
-    board.addEventListener("touchstart", handleTouchStart, { passive: false });
+    board.addEventListener("click", handleClick);
+    board.addEventListener("touchstart", handleTouch, { passive: false });
 };
 
 function startGame() {
-    if (!interval) {
-        resetGame();
-        document.getElementById("game-over-text").style.display = "none";
-        placeFood();
-        interval = setInterval(update, 200);
-    }
+    resetGame();
+    document.getElementById("gameOverText").style.display = "none";
+    placeFood();
+    clearInterval(interval);
+    interval = setInterval(update, 200);
 }
 
 function update() {
     if (gameOver) {
-        document.getElementById("game-over-text").style.display = "block";
+        document.getElementById("gameOverText").style.display = "block";
         clearInterval(interval);
-        interval = null;
         return;
     }
 
@@ -108,13 +106,36 @@ function placeFood() {
     foodY = Math.floor(Math.random() * rows) * blockSize;
 }
 
-function handleCanvasClick(e) {
-    startGame();
+function handleClick(e) {
+    const rect = board.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    if (x < snakeX) {
+        changeDirection({ code: "ArrowLeft" });
+    } else if (x > snakeX + blockSize) {
+        changeDirection({ code: "ArrowRight" });
+    } else if (y < snakeY) {
+        changeDirection({ code: "ArrowUp" });
+    } else if (y > snakeY + blockSize) {
+        changeDirection({ code: "ArrowDown" });
+    }
 }
 
-function handleTouchStart(e) {
+function handleTouch(e) {
     e.preventDefault();
-    startGame();
+    const touch = e.touches[0];
+    const rect = board.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    if (x < snakeX) {
+        changeDirection({ code: "ArrowLeft" });
+    } else if (x > snakeX + blockSize) {
+        changeDirection({ code: "ArrowRight" });
+    } else if (y < snakeY) {
+        changeDirection({ code: "ArrowUp" });
+    } else if (y > snakeY + blockSize) {
+        changeDirection({ code: "ArrowDown" });
+    }
 }
 
 function resetGame() {
