@@ -1,0 +1,25 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#board {
+    border: 1px solid black;
+    display: block;
+    margin: 20px auto;
+}
+
+#startButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.snake {
+    border-radius: 5px;
+}
+
+.food {
+    border-radius: 50%;
+}
