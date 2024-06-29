@@ -26,24 +26,25 @@ window.onload = function () {
     board.width = cols * blockSize;
     context = board.getContext("2d");
 
-    document.getElementById("startButton").addEventListener("click", startGame);
+    board.addEventListener("click", startGame);
     document.addEventListener("keyup", changeDirection);
-    board.addEventListener("click", handleClick);
     board.addEventListener("touchstart", handleTouch, { passive: false });
 };
 
 function startGame() {
-    resetGame();
-    document.getElementById("gameOverText").style.display = "none";
-    placeFood();
-    clearInterval(interval);
-    interval = setInterval(update, 200);
+    if (!interval) {
+        resetGame();
+        document.getElementById("gameOverText").style.display = "none";
+        placeFood();
+        interval = setInterval(update, 200);
+    }
 }
 
 function update() {
     if (gameOver) {
         document.getElementById("gameOverText").style.display = "block";
         clearInterval(interval);
+        interval = null;
         return;
     }
 
@@ -104,21 +105,6 @@ function changeDirection(e) {
 function placeFood() {
     foodX = Math.floor(Math.random() * cols) * blockSize;
     foodY = Math.floor(Math.random() * rows) * blockSize;
-}
-
-function handleClick(e) {
-    const rect = board.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    if (x < snakeX) {
-        changeDirection({ code: "ArrowLeft" });
-    } else if (x > snakeX + blockSize) {
-        changeDirection({ code: "ArrowRight" });
-    } else if (y < snakeY) {
-        changeDirection({ code: "ArrowUp" });
-    } else if (y > snakeY + blockSize) {
-        changeDirection({ code: "ArrowDown" });
-    }
 }
 
 function handleTouch(e) {
