@@ -61,8 +61,8 @@ function update() {
     }
 
     context.fillStyle = "lime";
-    snakeX += velocityX * blockSize;
-    snakeY += velocityY * blockSize;
+    snakeX += velocityX * blockSize * .5;
+    snakeY += velocityY * blockSize * .5;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
     for (let i = 0; i < snakeBody.length; i++) {
         context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
