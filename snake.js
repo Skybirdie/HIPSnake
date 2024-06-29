@@ -1,6 +1,6 @@
 var blockSize = 25;
 var rows = 20;
-var cols = 15;
+var cols = 10;
 var board;
 var context;
 
@@ -37,7 +37,7 @@ function startGame() {
     document.getElementById("gameOverText").style.display = "none";
     placeFood();
     clearInterval(interval);
-    interval = setInterval(update, 100);
+    interval = setInterval(update, 200);
 }
 
 function update() {
