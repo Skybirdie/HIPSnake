@@ -4,18 +4,17 @@ var cols = 15;
 var board;
 var context;
 
-var snakeX = blockSize * 5;
-var snakeY = blockSize * 5;
-
-var velocityX = 0;
-var velocityY = 0;
+var snakeX;
+var snakeY;
+var velocityX;
+var velocityY;
 
 var snakeBody = [];
 var foodX;
 var foodY;
 var gameOver = false;
-var speed = 100;
-var foodEaten = 0;
+var speed;
+var foodEaten;
 
 window.onload = function() {
     board = document.getElementById("board");
@@ -42,7 +41,7 @@ function resetGame() {
     snakeBody = [];
     foodEaten = 0;
     gameOver = false;
-    speed = 100;
+    speed = 100; // Reset speed to 100 ms per update
 }
 
 function update() {
@@ -52,16 +51,14 @@ function update() {
     context.fillRect(0, 0, board.width, board.height);
 
     context.fillStyle = "red";
-    context.beginPath();
-    context.arc(foodX + blockSize / 2, foodY + blockSize / 2, blockSize / 2, 0, 2 * Math.PI);
-    context.fill();
+    context.fillRect(foodX, foodY, blockSize, blockSize);
 
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY]);
         placeFood();
         foodEaten++;
         if (foodEaten % 10 === 0) {
-            speed *= 0.9;
+            speed *= 0.9; // Increase speed
         }
     }
 
@@ -98,16 +95,13 @@ function changeDirection(e) {
     if (e.code == "ArrowUp" && velocityY != 1) {
         velocityX = 0;
         velocityY = -1;
-    }
-    else if (e.code == "ArrowDown" && velocityY != -1) {
+    } else if (e.code == "ArrowDown" && velocityY != -1) {
         velocityX = 0;
         velocityY = 1;
-    }
-    else if (e.code == "ArrowLeft" && velocityX != 1) {
+    } else if (e.code == "ArrowLeft" && velocityX != 1) {
         velocityX = -1;
         velocityY = 0;
-    }
-    else if (e.code == "ArrowRight" && velocityX != -1) {
+    } else if (e.code == "ArrowRight" && velocityX != -1) {
         velocityX = 1;
         velocityY = 0;
     }
