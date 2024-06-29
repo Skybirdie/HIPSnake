@@ -15,11 +15,3 @@ body {
     margin-bottom: 10px;
     cursor: pointer;
 }
-
-.snake {
-    border-radius: 5px;
-}
-
-.food {
-    border-radius: 5px;
-}

@@ -13,8 +13,7 @@ var snakeBody = [];
 var foodX;
 var foodY;
 var gameOver = false;
-var speed;
-var foodEaten;
+var speed = 200; // Fixed speed
 
 window.onload = function() {
     board = document.getElementById("board");
@@ -39,9 +38,7 @@ function resetGame() {
     velocityX = 0;
     velocityY = 0;
     snakeBody = [];
-    foodEaten = 0;
     gameOver = false;
-    speed = 100; // Reset speed to 100 ms per update
 }
 
 function update() {
@@ -56,10 +53,6 @@ function update() {
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY]);
         placeFood();
-        foodEaten++;
-        if (foodEaten % 10 === 0) {
-            speed *= 0.9; // Increase speed
-        }
     }
 
     for (let i = snakeBody.length - 1; i > 0; i--) {
@@ -92,17 +85,17 @@ function update() {
 }
 
 function changeDirection(e) {
-    if (e.code == "ArrowUp" && velocityY != 1) {
+    if (e.code == "ArrowUp" && velocityY != 0.5) {
         velocityX = 0;
-        velocityY = -1;
-    } else if (e.code == "ArrowDown" && velocityY != -1) {
+        velocityY = -0.5;
+    } else if (e.code == "ArrowDown" && velocityY != -0.5) {
         velocityX = 0;
-        velocityY = 1;
-    } else if (e.code == "ArrowLeft" && velocityX != 1) {
-        velocityX = -1;
+        velocityY = 0.5;
+    } else if (e.code == "ArrowLeft" && velocityX != 0.5) {
+        velocityX = -0.5;
         velocityY = 0;
-    } else if (e.code == "ArrowRight" && velocityX != -1) {
-        velocityX = 1;
+    } else if (e.code == "ArrowRight" && velocityX != -0.5) {
+        velocityX = 0.5;
         velocityY = 0;
     }
 }
@@ -119,20 +112,20 @@ function changeDirectionTouch(e) {
     const dy = y - centerY;
 
     if (Math.abs(dx) > Math.abs(dy)) {
-        if (dx > 0 && velocityX != -1) {
-            velocityX = 1;
+        if (dx > 0 && velocityX != -0.5) {
+            velocityX = 0.5;
             velocityY = 0;
-        } else if (velocityX != 1) {
-            velocityX = -1;
+        } else if (velocityX != 0.5) {
+            velocityX = -0.5;
             velocityY = 0;
         }
     } else {
-        if (dy > 0 && velocityY != -1) {
+        if (dy > 0 && velocityY != -0.5) {
             velocityX = 0;
-            velocityY = 1;
-        } else if (velocityY != 1) {
+            velocityY = 0.5;
+        } else if (velocityY != 0.5) {
             velocityX = 0;
-            velocityY = -1;
+            velocityY = -0.5;
         }
     }
 }
