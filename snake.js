@@ -25,7 +25,9 @@ window.onload = function () {
     board.width = cols * blockSize;
     context = board.getContext("2d");
 
-    document.getElementById("startButton").addEventListener("click", startGame);
+    document.getElementById("startButton").addEventListener("click", () => {
+        location.reload(); // Refresh the page on start button click
+    });
     document.addEventListener("keyup", changeDirection);
     board.addEventListener("click", handleClick);
     board.addEventListener("touchstart", handleTouch, { passive: false });
@@ -61,8 +63,8 @@ function update() {
     }
 
     context.fillStyle = "lime";
-    snakeX += velocityX * blockSize * .5;
-    snakeY += velocityY * blockSize * .5;
+    snakeX += velocityX * blockSize;
+    snakeY += velocityY * blockSize;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
     for (let i = 0; i < snakeBody.length; i++) {
         context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
