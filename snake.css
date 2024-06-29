@@ -3,15 +3,25 @@ body {
     text-align: center;
 }
 
-canvas {
-    display: block;
-    margin: 20px auto;
-    border: 1px solid #000;
+#board {
+    border: 1px solid black;
 }
 
 #startButton {
+    margin: 10px auto;
     padding: 10px 20px;
-    font-size: 18px;
-    margin-bottom: 20px;
-    cursor: pointer;
+    font-size: 16px;
+}
+
+#gameOverText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: red;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
 }

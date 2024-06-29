@@ -4,7 +4,7 @@ var cols = 15;
 var board;
 var context;
 
-// snake head
+// Snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
 
@@ -13,11 +13,12 @@ var velocityY = 0;
 
 var snakeBody = [];
 
-// food
+// Food
 var foodX;
 var foodY;
 
 var gameOver = false;
+var interval;
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -25,9 +26,7 @@ window.onload = function () {
     board.width = cols * blockSize;
     context = board.getContext("2d");
 
-    document.getElementById("startButton").addEventListener("click", () => {
-        location.reload(); // Refresh the page on start button click
-    });
+    document.getElementById("startButton").addEventListener("click", startGame);
     document.addEventListener("keyup", changeDirection);
     board.addEventListener("click", handleClick);
     board.addEventListener("touchstart", handleTouch, { passive: false });
@@ -35,12 +34,16 @@ window.onload = function () {
 
 function startGame() {
     resetGame();
+    document.getElementById("gameOverText").style.display = "none";
     placeFood();
-    setInterval(update, 100);
+    clearInterval(interval);
+    interval = setInterval(update, 100);
 }
 
 function update() {
     if (gameOver) {
+        document.getElementById("gameOverText").style.display = "block";
+        clearInterval(interval);
         return;
     }
 
@@ -70,16 +73,14 @@ function update() {
         context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
     }
 
-    // game over conditions
+    // Game over conditions
     if (snakeX < 0 || snakeX >= cols * blockSize || snakeY < 0 || snakeY >= rows * blockSize) {
         gameOver = true;
-        alert("Game Over");
     }
 
     for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX === snakeBody[i][0] && snakeY === snakeBody[i][1]) {
             gameOver = true;
-            alert("Game Over");
         }
     }
 }
