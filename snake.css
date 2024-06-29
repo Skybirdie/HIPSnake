@@ -3,15 +3,15 @@ body {
     text-align: center;
 }
 
-#board {
-    border: 1px solid black;
+canvas {
     display: block;
     margin: 20px auto;
+    border: 1px solid #000;
 }
 
 #startButton {
     padding: 10px 20px;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
