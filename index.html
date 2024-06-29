@@ -1,16 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake</title>
+    <title>Snake Game</title>
     <link rel="stylesheet" href="snake.css">
-    <script src="snake.js"></script>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #board-container {
+            position: relative;
+            margin-top: 20px; /* Adjust as needed */
+        }
+
+        #start-button {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #game-over-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-    <h1>Snake</h1>
-    <button id="startButton">Start Game</button>
-    <canvas id="board"></canvas>
-    <div id="gameOverText" style="display: none;">Game Over</div>
+    <div id="game-container">
+        <h1>Snake Game</h1>
+        <div id="board-container">
+            <canvas id="board"></canvas>
+            <div id="game-over-text">Game Over</div>
+        </div>
+        <button id="start-button">Start Game</button>
+    </div>
+
+    <script src="snake.js"></script>
 </body>
 </html>

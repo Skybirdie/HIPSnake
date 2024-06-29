@@ -3,28 +3,3 @@ body {
     text-align: center;
 }
 
-#board {
-    border: 1px solid black;
-}
-
-#startButton {
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-#gameOverText {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    font-weight: bold;
-    color: red;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    display: none;
-}
