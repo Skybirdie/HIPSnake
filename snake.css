@@ -7,7 +7,7 @@ body {
     justify-content: top-center;
     align-items: center;
     flex-direction: column;
-    background-color: solid black !important;
+    background-color: linear-gradient(90deg,#0ce9f3 10%, #36c8c9 20%, #357B7F 100%) !important;
 }
 
 .container {
@@ -15,7 +15,6 @@ body {
     margin-top: 10px;
     border: 3px blue-green;
     padding: 10px;
-    background-color: linear-gradient(90deg,#0ce9f3 10%, #36c8c9 20%, #357B7F 100%) !important;
 }
 
 #board {
